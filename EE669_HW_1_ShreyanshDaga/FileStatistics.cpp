@@ -37,7 +37,7 @@ void FileStatistics::GenerateStatistics()
 
 		for (int i = 0; i < this->iFileSize; i++)
 		{
-			char cByte = (char)fgetc(fp);		
+			unsigned int cByte = (unsigned int)fgetc(fp);
 
 			// Add the Symbol to the symbol table
 			this->pSymTable->AddSymbol(cByte);

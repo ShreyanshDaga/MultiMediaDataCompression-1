@@ -28,20 +28,20 @@ SymbolTable::SymbolTable(int iSize)
 	}
 }
 
-void SymbolTable::AddSymbol(char cSymbol)
+void SymbolTable::AddSymbol(unsigned int cSymbol)
 {	
-	if (this->pSymCount[(unsigned int)cSymbol] == 0)
+	if (this->pSymCount[cSymbol] == 0)
 	{
-		this->pSymCount[(unsigned int)cSymbol] = 1;
+		this->pSymCount[cSymbol] = 1;
 		this->iSymbolCount++;
 	}
 	else
-		this->pSymCount[(unsigned int)cSymbol]++;
+		this->pSymCount[cSymbol]++;
 }
 
-int SymbolTable::GetSymbolCount(char cSymbol)
+int SymbolTable::GetSymbolCount(unsigned int cSymbol)
 {
-	return this->pSymCount[(unsigned int)cSymbol];
+	return this->pSymCount[cSymbol];
 }
 
 int SymbolTable::GetTotalSymbolCount()

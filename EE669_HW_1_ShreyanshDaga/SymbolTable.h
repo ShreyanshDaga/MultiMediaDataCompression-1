@@ -12,7 +12,7 @@ class SymbolTable
 	public:
 		SymbolTable();
 		SymbolTable(int iSize);
-		void AddSymbol(char cSymbol);
-		int GetSymbolCount(char cSymbol);
+		void AddSymbol(unsigned int cSymbol);
+		int GetSymbolCount(unsigned int cSymbol);
 		int GetTotalSymbolCount();
 };
