@@ -2,7 +2,7 @@
 
 class SymbolTable
 {
-	private:
+	public:
 		std::map<char,int> SymMap;
 		int *pSymCount;
 		char *pSymbol;

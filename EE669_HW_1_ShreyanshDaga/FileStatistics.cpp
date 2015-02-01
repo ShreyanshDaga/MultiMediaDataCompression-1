@@ -46,7 +46,20 @@ void FileStatistics::GenerateStatistics()
 		// Generate Probability
 		for (int i = 0; i < 256; i++)
 		{
-			if (this->pSymTable->)
+			if (this->pSymTable->pSymCount[i] != 0)
+			{
+				this->pfProbability[i] = ((float)this->pSymTable->pSymCount[i] / this->iFileSize);
+			}
+			else
+				this->pfProbability[i] = -1.00f;
+		}
+
+		// Calculate Entropy
+		this->fEntropy = 0.00f;
+		for (int i = 0; i < 256; i++)
+		{
+			if (this->pfProbability[i] > 0.00f)
+				this->fEntropy += -(this->pfProbability[i]*log10f(this->pfProbability[i])/log10f(2.00f));
 		}
 
 		this->bStats = true;
