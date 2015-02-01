@@ -4,17 +4,18 @@
 FileStatistics::FileStatistics()
 {
 	strcpy(this->szFileName, "");
-	this->fEntropy = 0.00f;
-	this->iTotalSymCount = 0;
+	this->fEntropy = 0.00f;	
 	this->bStats = false;
-	
+	this->iFileSize = 0;
 }
 
 FileStatistics::FileStatistics(char *pszFileName)
 {
-	this->fEntropy = 0.00f;
-	this->iTotalSymCount = 0;
+	this->fEntropy = 0.00f;	
 	this->bStats = false;	
+	this->iFileSize = 0;
+	this->pSymTable = new SymbolTable(256);
+
 	strcpy(this->szFileName, pszFileName);
 
 	// Generate the Statistics here
@@ -28,20 +29,24 @@ void FileStatistics::GenerateStatistics()
 		// Read the file
 		fp = fopen(this->szFileName, "rb");
 
-		
 		// Generate SymbolTable
 		fseek(fp, 0, SEEK_END);
 		// Find total number of bytes
-		int iTotalBytes = ftell(fp);
-		fseek(fp, 0, SEEK_SET);
-		char c;
+		this->iFileSize = ftell(fp);
+		fseek(fp, 0, SEEK_SET);		
 
-		for (int i = 0; i < iTotalBytes; i++)
+		for (int i = 0; i < this->iFileSize; i++)
 		{
-			unsigned int cByte = fgetc(fp);
-						
-			// Check if Symbol already there
-			this->AddToSymbolTable(cByte);
+			char cByte = (char)fgetc(fp);		
+
+			// Add the Symbol to the symbol table
+			this->pSymTable->AddSymbol(cByte);
+		}
+
+		// Generate Probability
+		for (int i = 0; i < 256; i++)
+		{
+			if (this->pSymTable->)
 		}
 
 		this->bStats = true;

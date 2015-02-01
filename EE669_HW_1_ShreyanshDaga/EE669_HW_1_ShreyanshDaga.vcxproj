@@ -82,6 +82,7 @@
     <ClCompile Include="Problem_2.cpp" />
     <ClCompile Include="Problem_3.cpp" />
     <ClCompile Include="ShannonFanoEnc.cpp" />
+    <ClCompile Include="SymbolTable.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +90,7 @@
     <ClInclude Include="HuffmanEnc.h" />
     <ClInclude Include="HW_1.h" />
     <ClInclude Include="ShanonFanoEnc.h" />
+    <ClInclude Include="SymbolTable.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

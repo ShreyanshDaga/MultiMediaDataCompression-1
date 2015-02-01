@@ -1,12 +1,13 @@
 #include "HW_1.h"
+#include "SymbolTable.h"
 
 class FileStatistics
 {	
 	private:
 		char szFileName[30];
-		char pSymbolTable[256][2];
+		SymbolTable *pSymTable;
 		float pfProbability[256];
-		int iTotalSymCount;
+		int iFileSize;
 		float fEntropy;
 		bool bStats;
 		FILE *fp;
@@ -20,5 +21,5 @@ class FileStatistics
 		int GetSymbolCount(char cSym);
 		float GetSymbolProbability(char cSym);
 		float GetEntropy();
-		void PrintSymbolTable(char *pszFileName);
+		void PrintSymbolTable(char *pszOPFileName);
 };
