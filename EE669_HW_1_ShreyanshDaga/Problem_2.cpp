@@ -11,7 +11,7 @@ void Problem_2_A()
 
 	// Part a: Entropy, Relative Frequency
 	// i) For Text
-	FileStatistics fText("binary.dat.raw");
+	FileStatistics fText("test_1.dat");
 
 	// ii) For Audio
 	// iii) For GreyScale Image

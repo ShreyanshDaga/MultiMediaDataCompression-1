@@ -62,7 +62,11 @@ void FileStatistics::GenerateStatistics()
 				this->fEntropy += -(this->pfProbability[i]*log10f(this->pfProbability[i])/log10f(2.00f));
 		}
 
+		fclose(fp);
+		// Statistics have been calculated
 		this->bStats = true;
+		string szOPStatFileName = "OP_Stat.txt";
+		this->PrintStatistics(szOPStatFileName);
 	}
 
 }
@@ -72,3 +76,26 @@ void FileStatistics::IncrementSymbolCount(char cSym)
 
 }
 
+void FileStatistics::PrintStatistics(string szOpFileName)
+{
+	FILE *fp = fopen(szOpFileName.c_str(), "w");
+
+	fprintf(fp, "Entropy: %f", this->fEntropy);
+	
+	for (int i = 0; i < 256; i++)
+	{
+		if (this->pfProbability[i] > 0.00)
+		{
+			bitset<8> byte(i);			
+			float fP = this->pfProbability[i];
+			
+			string szProb = to_string(fP);
+			string szSymbol = byte.to_string('0', '1');
+			string szFinal = "\n" + szSymbol + " : " + szProb;
+			
+			fprintf(fp,"%s", szFinal.c_str());
+		}
+	}
+
+	fclose(fp);
+}

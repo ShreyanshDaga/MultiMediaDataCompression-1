@@ -2,6 +2,10 @@
 #include<stdio.h>
 #include<string.h>
 #include<conio.h>
+#include<string>
+#include<bitset>
+
+using namespace std;
 
 // Signature definitions
 void Problem_2_A();

@@ -22,4 +22,5 @@ class FileStatistics
 		float GetSymbolProbability(char cSym);
 		float GetEntropy();
 		void PrintSymbolTable(char *pszOPFileName);
+		void PrintStatistics(string szFileName);
 };
