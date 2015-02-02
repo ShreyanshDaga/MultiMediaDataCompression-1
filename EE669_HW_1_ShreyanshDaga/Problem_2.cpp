@@ -11,11 +11,14 @@ void Problem_2_A()
 
 	// Part a: Entropy, Relative Frequency
 	// i) For Text
-	FileStatistics fText("test_1.dat");
+	FileStatistics fText("text.dat");
 
 	// ii) For Audio
+	FileStatistics fAudio("audio.dat");
 	// iii) For GreyScale Image
+	FileStatistics fImage("image.dat.raw");
 	// iv) For Binary Image
+	FileStatistics fBinary("binary.dat.raw");
 
 	// Part b: ShannonFanoEncoder
 	// i) For Text

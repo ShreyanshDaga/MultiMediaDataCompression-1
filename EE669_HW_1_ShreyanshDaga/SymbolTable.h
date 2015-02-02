@@ -2,11 +2,10 @@
 
 class SymbolTable
 {
-	public:
-		std::map<char,int> SymMap;
-		int *pSymCount;
-		char *pSymbol;
-		int iSize;
+	public:		
+		int *pSymCount;				// This stores the count of each symbol
+		char *pSymbol;				// This stores the code of each symbol
+		int iSize;					
 		int iSymbolCount;
 
 	public:

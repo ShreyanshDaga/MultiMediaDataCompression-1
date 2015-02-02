@@ -65,8 +65,10 @@ void FileStatistics::GenerateStatistics()
 		fclose(fp);
 		// Statistics have been calculated
 		this->bStats = true;
-		string szOPStatFileName = "OP_Stat.txt";
-		this->PrintStatistics(szOPStatFileName);
+		string strFileName(this->szFileName);		
+		int iPos = strFileName.find('.');
+		string strOpFileName = strFileName.substr(0, iPos) + "_Stats.txt";
+		this->PrintStatistics(strOpFileName);
 	}
 
 }
@@ -80,8 +82,11 @@ void FileStatistics::PrintStatistics(string szOpFileName)
 {
 	FILE *fp = fopen(szOpFileName.c_str(), "w");
 
-	fprintf(fp, "Entropy: %f", this->fEntropy);
-	
+	fprintf(fp, "Input File Name: %s", this->szFileName);
+	fprintf(fp, "\nEntropy: %f", this->fEntropy);
+	fprintf(fp, "\nTotal Symbols: %d", this->pSymTable->iSymbolCount);
+	fprintf(fp, "\n\nSymbol(Binary) : Relative Frequnecy");
+
 	for (int i = 0; i < 256; i++)
 	{
 		if (this->pfProbability[i] > 0.00)
