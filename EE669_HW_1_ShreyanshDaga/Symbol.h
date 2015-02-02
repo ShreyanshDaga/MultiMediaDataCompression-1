@@ -1,3 +1,6 @@
+#ifndef SYMBOL_H_
+#define SYMBOL_H_
+
 #include "HW_1.h"
 
 class Symbol
@@ -13,6 +16,10 @@ class Symbol
 
 		void AppendToCode(string cBit);
 		void SetSymbol(unsigned int cSym);
+		void SetProbability(float fProb);
 		string GetCode();
-		unsigned int GetSymbol();		
+		unsigned int GetSymbol();
+		float GetProbability();
 };
+
+#endif

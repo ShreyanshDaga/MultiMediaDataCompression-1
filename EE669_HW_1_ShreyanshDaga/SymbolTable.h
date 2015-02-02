@@ -1,4 +1,5 @@
-#include<map>
+#ifndef SYMBOLTABLE_H_
+#define SYMBOLTABLE_H_
 
 class SymbolTable
 {
@@ -15,3 +16,5 @@ class SymbolTable
 		int GetSymbolCount(unsigned int cSymbol);
 		int GetTotalSymbolCount();
 };
+
+#endif

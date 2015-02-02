@@ -1,4 +1,7 @@
 #include "HW_1.h"
+#ifndef SHANONFANOENC_H_
+#define SHANONFANOENC_H_
+
 #include "FileStatistics.h"
 #include "Symbol.h"
 
@@ -13,6 +16,8 @@ class ShannonFanoEnc
 
 	public:
 		ShannonFanoEnc();
-		ShannonFanoEnc(FileStatistics *pFileStats, int iSymCount);
+		ShannonFanoEnc(FileStatistics *pFileStats);
 		void Encode_ShannonFano();
 };
+
+#endif

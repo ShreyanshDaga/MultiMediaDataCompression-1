@@ -23,6 +23,11 @@ void Symbol::SetSymbol(unsigned int cSym)
 	this->cSymbol = cSym;
 }
 
+void Symbol::SetProbability(float fProb)
+{
+	this->fProb = fProb;
+}
+
 string Symbol::GetCode()
 {
 	return this->strCode;
@@ -31,4 +36,9 @@ string Symbol::GetCode()
 unsigned int Symbol::GetSymbol()
 {
 	return this->cSymbol;
+}
+
+float Symbol::GetProbability()
+{
+	return this->fProb;
 }

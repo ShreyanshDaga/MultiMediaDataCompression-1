@@ -104,3 +104,13 @@ void FileStatistics::PrintStatistics(string szOpFileName)
 
 	fclose(fp);
 }
+
+float* FileStatistics::GetProbability()
+{
+	return this->pfProbability;
+}
+
+int FileStatistics::GetTotalSymbolCount()
+{
+	return this->pSymTable->iSymbolCount;
+}

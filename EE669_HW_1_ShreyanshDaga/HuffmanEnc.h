@@ -1,3 +1,6 @@
+#ifndef HUFFMANENC_H_
+#define HUFFMANENC_H_
+
 #include "HW_1.h"
 
 class HuffmanEnc
@@ -8,3 +11,5 @@ class HuffmanEnc
 		HuffmanEnc();						//Empty Constructor
 		//HuffmanEnc();						//Parameterised Constructor
 };
+
+#endif
