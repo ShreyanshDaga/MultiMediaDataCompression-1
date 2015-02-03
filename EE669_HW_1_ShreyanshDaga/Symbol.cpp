@@ -3,6 +3,7 @@
 Symbol::Symbol()
 {
 	this->cSymbol = 0;
+	this->fProb = 0.00f;
 	this->strCode = "";
 }
 

@@ -11,8 +11,13 @@ void Problem_2_A()
 
 	// Part a: Entropy, Relative Frequency
 	// i) For Text
-	FileStatistics fText("text.dat");
+	FileStatistics fText("test_1.dat");
 	ShannonFanoEnc SFEnc(&fText);
+
+	SFEnc.Encode_ShannonFano();
+	SFEnc.PrintSymbolTable();
+	SFEnc.WriteToFile();
+	SFEnc.WritePostStatistics();
 
 	// ii) For Audio
 	FileStatistics fAudio("audio.dat");

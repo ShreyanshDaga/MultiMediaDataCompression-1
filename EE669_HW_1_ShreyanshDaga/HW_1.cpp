@@ -3,11 +3,14 @@
 using namespace std;
 
 int PrintMenu();
+void Split();
 
 int main()
 {	
 	int iCh = 0;
-
+	///
+//	Split();
+	///
 	while (1)
 	{
 		iCh = PrintMenu();
@@ -65,4 +68,27 @@ int PrintMenu()
 	cin >> iCh;
 
 	return iCh;
+}
+
+void Split()
+{
+	int iArray[2] = { 1, 1 };
+	
+	int i=0, j=1;
+	int Sum1 = 0, Sum2 = 0;
+
+	while (i < j)
+	{		
+		Sum1 += iArray[i];
+
+		while (Sum2 < Sum1 && j > i)
+		{			
+			Sum2 += iArray[j];			
+			j--;
+		}		
+		i++;
+	}
+
+	cout << i<<endl;
+	cout << j<<endl;
 }

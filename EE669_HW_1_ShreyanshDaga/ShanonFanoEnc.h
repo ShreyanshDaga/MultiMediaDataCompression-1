@@ -13,11 +13,14 @@ class ShannonFanoEnc
 		int iSymCount;
 
 		void SortSymbols();
-
+		void ShannonRecursive(int iStart, int iEnd);
 	public:
 		ShannonFanoEnc();
 		ShannonFanoEnc(FileStatistics *pFileStats);
 		void Encode_ShannonFano();
+		void PrintSymbolTable();
+		void WriteToFile();
+		void WritePostStatistics();
 };
 
 #endif
