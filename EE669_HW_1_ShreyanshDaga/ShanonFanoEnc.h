@@ -14,6 +14,7 @@ class ShannonFanoEnc
 
 		void SortSymbols();
 		void ShannonRecursive(int iStart, int iEnd);
+		string GetCodeForSymbol(unsigned int cSym);
 	public:
 		ShannonFanoEnc();
 		ShannonFanoEnc(FileStatistics *pFileStats);

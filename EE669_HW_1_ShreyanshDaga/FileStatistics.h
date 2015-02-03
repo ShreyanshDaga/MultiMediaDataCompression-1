@@ -6,8 +6,7 @@
 
 class FileStatistics
 {	
-	private:
-		char szFileName[30];
+	private:		
 		SymbolTable *pSymTable;
 		float pfProbability[256];
 		int iFileSize;
@@ -16,6 +15,8 @@ class FileStatistics
 		FILE *fp;
 
 	public:
+		char szFileName[30];
+
 		FileStatistics();
 		FileStatistics(char *pszFileName);
 

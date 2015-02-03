@@ -11,32 +11,40 @@ void Problem_2_A()
 
 	// Part a: Entropy, Relative Frequency
 	// i) For Text
-	FileStatistics fText("test_1.dat");
-	ShannonFanoEnc SFEnc(&fText);
+	FileStatistics fText("text.dat");
+	ShannonFanoEnc SFEnc_Text(&fText);
 
-	SFEnc.Encode_ShannonFano();
-	SFEnc.PrintSymbolTable();
-	SFEnc.WriteToFile();
-	SFEnc.WritePostStatistics();
+	SFEnc_Text.Encode_ShannonFano();
+	SFEnc_Text.PrintSymbolTable();
+	SFEnc_Text.WriteToFile();
+	SFEnc_Text.WritePostStatistics();
 
 	// ii) For Audio
 	FileStatistics fAudio("audio.dat");
+	ShannonFanoEnc SFEnc_Aud(&fAudio);
+
+	SFEnc_Aud.Encode_ShannonFano();
+	SFEnc_Aud.PrintSymbolTable();
+	SFEnc_Aud.WriteToFile();
+	SFEnc_Aud.WritePostStatistics();
+
 	// iii) For GreyScale Image
 	FileStatistics fImage("image.dat.raw");
+	ShannonFanoEnc SFEnc_Img(&fImage);
+
+	SFEnc_Img.Encode_ShannonFano();
+	SFEnc_Img.PrintSymbolTable();
+	SFEnc_Img.WriteToFile();
+	SFEnc_Img.WritePostStatistics();
+
 	// iv) For Binary Image
 	FileStatistics fBinary("binary.dat.raw");
+	ShannonFanoEnc SFEnc_Bin(&fBinary);
 
-	// Part b: ShannonFanoEncoder
-	// i) For Text
-	// ii) For Audio
-	// iii) For GreyScale Image
-	// iv) For Binary Image
-
-	// Results
-	// i) For Text
-	// ii) For Audio
-	// iii) For GreyScale Image
-	// iv) For Binary Image
+	SFEnc_Bin.Encode_ShannonFano();
+	SFEnc_Bin.PrintSymbolTable();
+	SFEnc_Bin.WriteToFile();
+	SFEnc_Bin.WritePostStatistics();
 }
 
 void Problem_2_B()

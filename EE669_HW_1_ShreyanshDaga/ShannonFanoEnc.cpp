@@ -27,14 +27,7 @@ ShannonFanoEnc::ShannonFanoEnc(FileStatistics *pFileStats)
 	}
 
 	// Sort Symbols Accrording to Probabilities
-	this->SortSymbols();
-
-	/// Prin sorted to command
-	/*for (int i = 0; i < this->iSymCount; i++)
-	{
-		cout << "\n" << this->pSymTable[i].GetProbability();
-	}
-	getch();*/
+	this->SortSymbols();	
 }
 
 void ShannonFanoEnc::Encode_ShannonFano()
@@ -106,7 +99,11 @@ void ShannonFanoEnc::ShannonRecursive(int iStart, int iEnd)
 
 void ShannonFanoEnc::PrintSymbolTable()
 {
-	FILE *fp = fopen("SymTable.txt","w");
+	string strFileName(this->pFileStats->szFileName);
+	int iPos = strFileName.find('.');
+	string strSymTableFileName = strFileName.substr(0, iPos) + "_SF_SymTable.txt";
+	
+	FILE *fp = fopen(strSymTableFileName.c_str(), "w");
 
 	fprintf(fp, "\n\n Symbol   :: Code");
 
@@ -123,17 +120,44 @@ void ShannonFanoEnc::PrintSymbolTable()
 
 void ShannonFanoEnc::WriteToFile()
 {
-	FILE *fp = fopen("op.dat", "wb");
+	string strFileName(this->pFileStats->szFileName);
+	int iPos = strFileName.find('.');
+	string strOpFileName = strFileName.substr(0, iPos) + "_SF_Comp.dat";
 
-	for (int i = 0; i < this->iSymCount; i++)
+	FILE *fpOut = fopen(strOpFileName.c_str(), "wb");
+	FILE *fpIn = fopen(this->pFileStats->szFileName,"rb");
+	
+	fseek(fpIn, 0, SEEK_END);
+	int iFileSize = ftell(fpIn);
+	fseek(fpIn, 0, SEEK_SET);
+
+	for (int i = 0; i < iFileSize; i++)
 	{
-		fprintf(fp, "%s", this->pSymTable[i].GetCode().c_str());
+		unsigned int cSymbol = (unsigned int)fgetc(fpIn);
+		string szCode = this->GetCodeForSymbol(cSymbol);
+		fprintf(fpOut, "%s", szCode.c_str());
 	}
 
-	fclose(fp);
+	fclose(fpIn);
+	fclose(fpOut);
 }
 
 void ShannonFanoEnc::WritePostStatistics()
 {
+	// Redunduncy
 
+	// Avg CodeWord length
+
+	// Compression Ratio
+}
+
+string ShannonFanoEnc::GetCodeForSymbol(unsigned int cSym)
+{
+	for (int i = 0; i < this->iSymCount; i++)
+	{
+		if (this->pSymTable[i].GetSymbol() == cSym)
+			return this->pSymTable[i].GetCode();
+	}
+
+	return "";
 }
