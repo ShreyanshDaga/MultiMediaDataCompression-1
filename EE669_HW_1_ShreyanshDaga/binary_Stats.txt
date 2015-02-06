@@ -1,0 +1,7 @@
+Input File Name: binary.dat.raw
+Entropy: 0.141036
+Total Symbols: 2
+
+Symbol(Binary) : Relative Frequnecy
+00000000 : 0.019928
+11111111 : 0.980072
