@@ -4,32 +4,25 @@
 // For Tree
 Tree::Tree()
 {
-
-}
-
-void Tree::InsertVal(int iVal)
-{
-
-}
-
-Node* Tree::SearchVal(int iVal)
-{
-	Node *pNode = NULL;
-
-	return pNode;
+	this->pRoot = NULL;
 }
 
 // For Node
 Node::Node()
 {
-	this->iValue = 0;
+	this->strCode = "";
+	this->cSym = 0;
 	this->pLeft = NULL;
 	this->pRight = NULL;
 }
 
-Node::Node(int iVal)
+Node::Node(unsigned int cSym, float fProb, bool bIsSym)
 {
-	this->iValue = iVal;
+	this->cSym = cSym;
+	this->bIsSym = bIsSym;
+	this->fProb = fProb;
+	this->strCode = "";
+
 	this->pLeft = NULL;
 	this->pRight = NULL;
 }
@@ -37,9 +30,11 @@ Node::Node(int iVal)
 void Node::AddLeftChild(Node *pChild)
 {
 	this->pLeft = pChild;
+	this->pLeft->pParent = this;
 }
 
 void Node::AddRightChild(Node *pChild)
 {
 	this->pRight = pChild;
+	this->pRight->pParent = this;
 }

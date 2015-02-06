@@ -50,6 +50,10 @@ void Problem_2_A()
 void Problem_2_B()
 {
 	// Huffman Coding with Global Stats
+	FileStatistics fText("test_1.txt");
+	HuffmanEnc HEnc_Text(&fText);
+
+	HEnc_Text.Encode_Huffman();
 
 }
 

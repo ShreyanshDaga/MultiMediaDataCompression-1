@@ -2,6 +2,7 @@
 #define HUFFMANENC_H_
 
 #include "HW_1.h"
+#include "Tree.h"
 #include "FileStatistics.h"
 #include "Symbol.h"
 
@@ -10,7 +11,11 @@ class HuffmanEnc
 	private:
 		FileStatistics *pFileStats;
 		Symbol *pSymTable;
+		vector<Node> nodeArray;
+		vector<Symbol> symTable;
+
 		int iSymCount;
+		Tree *pHuffmanTree;
 
 		void SortSymbols();
 		string GetCodeForSymbol(unsigned int cSym);
@@ -22,6 +27,8 @@ class HuffmanEnc
 		void PrintSymbolTable();
 		void WriteToFile();
 		void WritePostStatistics();
+
+		Node ExtractMin();
 };
 
 #endif

@@ -1,6 +1,8 @@
 #include "HW_1.h"
 #include "HuffmanEnc.h"
 
+void AssignCode(Node *pRoot, string strCode);
+
 HuffmanEnc::HuffmanEnc()
 {	
 
@@ -10,8 +12,10 @@ HuffmanEnc::HuffmanEnc(FileStatistics *pFileStats)
 {
 	this->pFileStats = pFileStats;
 	this->iSymCount = this->pFileStats->GetTotalSymbolCount();
+	this->pHuffmanTree = new Tree();
 
-	this->pSymTable = new Symbol[this->iSymCount];
+	this->pSymTable = new Symbol[this->iSymCount];	
+
 
 	// Fill Symbols and their Probabilities
 	int j = 0;
@@ -20,7 +24,11 @@ HuffmanEnc::HuffmanEnc(FileStatistics *pFileStats)
 		if (this->pFileStats->GetProbability()[i] > 0.00f)
 		{
 			this->pSymTable[j].SetProbability(this->pFileStats->GetProbability()[i]);
-			this->pSymTable[j].SetSymbol(i);
+			this->pSymTable[j].SetSymbol(i);						
+
+			// Add all the symbols to the nodeArray list
+			Node tempNode(i,this->pSymTable[j].GetProbability(),true);
+			this->nodeArray.push_back(tempNode);
 
 			j++;
 		}
@@ -29,8 +37,7 @@ HuffmanEnc::HuffmanEnc(FileStatistics *pFileStats)
 	// Sort The Symbols
 	// Ascending order
 
-	this->SortSymbols();
-
+	this->SortSymbols();	
 }
 
 void HuffmanEnc::SortSymbols()
@@ -58,8 +65,116 @@ void HuffmanEnc::SortSymbols()
 }
 
 void HuffmanEnc::Encode_Huffman()
-{
+{	
+	Node *pRoot;
 
+	while (!this->nodeArray.empty())
+	{
+		Node *pTempNode = new Node();
+		Node *pMin1 = new Node();
+		Node *pMin2 = new Node();
+
+		*pMin1 = this->ExtractMin();
+		*pMin2 = this->ExtractMin();
+
+		pTempNode->AddLeftChild(pMin1);
+		pTempNode->AddRightChild(pMin2);
+		pTempNode->fProb = pMin1->fProb + pMin2->fProb;
+
+		this->nodeArray.push_back(*pTempNode);
+
+		if (this->nodeArray.size() == 1)
+		{
+			// only root 
+			pRoot = &this->nodeArray[0];
+			break;
+		}
+	}
+
+	// Assign Codes
+	AssignCode(pRoot, "");
+
+	// Fill the Symbol Table
+	pRoot->cSym = 0;
+	
+}
+
+void AssignCode(Node *pRoot, string strCode)
+{	
+
+	Node *root1 = new Node();
+	root1 = pRoot;
+
+	root1->strCode = strCode;
+
+	if (root1 == NULL)
+	{
+
+	}
+	else if (root1->pLeft == NULL && root1->pRight == NULL)
+	{
+
+		unsigned int cSym = root1->cSym;
+		string strCode = root1->strCode;
+		Symbol S;
+		S.SetSymbol(cSym);
+		S.AppendToCode(strCode);
+
+		cout << "\nSymbol: " << cSym << " Code: " << strCode;
+	}
+	else
+	{
+
+		root1->pLeft->strCode = strCode.append("0");
+		strCode.erase(strCode.end() - 1);
+
+		root1->pRight->strCode = strCode.append("1");
+		strCode.erase(strCode.end() - 1);
+
+
+		AssignCode(root1->pLeft, strCode.append("0"));
+		strCode.erase(strCode.end() - 1);
+		AssignCode(root1->pRight, strCode.append("1"));
+		strCode.erase(strCode.end() - 1);
+	}
+
+	/*if (pRoot == NULL)	
+		return;		
+		
+	pRoot->strCode = strCode;
+
+	if (pRoot->pLeft == NULL && pRoot->pRight == NULL)
+	{
+		unsigned int cSym = pRoot->cSym;
+		string strCode = pRoot->strCode;
+
+		cout << "\nSymbol: " << cSym << " Code: " << strCode;
+	}
+
+	AssignCode(pRoot->pLeft, pRoot->strCode + "0");
+	AssignCode(pRoot->pRight, pRoot->strCode + "1");*/
+}
+
+Node HuffmanEnc::ExtractMin()
+{
+	// This will extract the minimum node from node array
+	float fMax = (float)INT_MAX;
+
+	vector<Node>::iterator i1, iPos;
+
+	for (i1 = this->nodeArray.begin(); i1 != this->nodeArray.end(); i1++)
+	{
+		if (fMax > i1->fProb)
+		{
+			iPos = i1;
+			fMax = i1->fProb;
+		}
+	}
+
+	Node nodeMin = (*iPos);
+	this->nodeArray.erase(iPos);
+
+	return nodeMin;
 }
 
 void HuffmanEnc::PrintSymbolTable()

@@ -1,28 +1,33 @@
+#ifndef TREE_H_
+#define TREE_H_
 
 class Node
 {
-private:
-	int iValue;
+public:
+	unsigned int cSym;
 	float fProb;
+	bool bIsSym;
+	string strCode;
 
+	Node *pParent;
 	Node *pLeft;
 	Node *pRight;
 
 public:
 	Node();
-	Node(int iVal);
+	Node(unsigned int cSymbol, float fProb, bool bIsSym);
 
 	void AddLeftChild(Node *pChild);
-	void AddRightChild(Node *pChild);
+	void AddRightChild(Node *pChild);	
 };
 
 class Tree
 {
-	private:
+	public:
 		Node *pRoot;
 
 	public:
 		Tree();
-		void InsertVal(int iVal);
-		Node* SearchVal(int iVal);
 };
+
+#endif

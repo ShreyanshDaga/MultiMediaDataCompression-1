@@ -7,6 +7,7 @@
 #include<conio.h>
 #include<string>
 #include<bitset>
+#include<vector>
 
 using namespace std;
 

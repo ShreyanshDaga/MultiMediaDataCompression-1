@@ -81,6 +81,7 @@
     <ClCompile Include="HW_1.cpp" />
     <ClCompile Include="Problem_2.cpp" />
     <ClCompile Include="Problem_3.cpp" />
+    <ClCompile Include="RLEnc.cpp" />
     <ClCompile Include="ShannonFanoEnc.cpp" />
     <ClCompile Include="Symbol.cpp" />
     <ClCompile Include="SymbolTable.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="FileStatistics.h" />
     <ClInclude Include="HuffmanEnc.h" />
     <ClInclude Include="HW_1.h" />
+    <ClInclude Include="RLEnc.h" />
     <ClInclude Include="ShanonFanoEnc.h" />
     <ClInclude Include="Symbol.h" />
     <ClInclude Include="SymbolTable.h" />
