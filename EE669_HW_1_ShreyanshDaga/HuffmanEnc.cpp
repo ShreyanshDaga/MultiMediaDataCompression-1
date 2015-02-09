@@ -1,7 +1,6 @@
 #include "HW_1.h"
+#include "FileStatistics.h"
 #include "HuffmanEnc.h"
-
-void AssignCode(Node *pRoot, string strCode);
 
 HuffmanEnc::HuffmanEnc()
 {	
@@ -92,14 +91,16 @@ void HuffmanEnc::Encode_Huffman()
 	}
 
 	// Assign Codes
-	AssignCode(pRoot, "");
-
-	// Fill the Symbol Table
-	pRoot->cSym = 0;
+	this->AssignCode(pRoot, "");
 	
+	// Print SymbolTable
+	this->PrintSymbolTable();
+
+	// Write Output File
+	this->WriteToFile();
 }
 
-void AssignCode(Node *pRoot, string strCode)
+void HuffmanEnc::AssignCode(Node *pRoot, string strCode)
 {	
 
 	Node *root1 = new Node();
@@ -120,7 +121,10 @@ void AssignCode(Node *pRoot, string strCode)
 		S.SetSymbol(cSym);
 		S.AppendToCode(strCode);
 
-		cout << "\nSymbol: " << cSym << " Code: " << strCode;
+		// Add to SymbolTable
+		this->symTable.push_back(S);
+		// For debug
+		//cout << "\nSymbol: " << cSym << " Code: " << strCode;
 	}
 	else
 	{
@@ -188,10 +192,9 @@ void HuffmanEnc::PrintSymbolTable()
 
 	for (int i = 0; i < this->iSymCount; i++)
 	{
-		bitset<8> bSymbol(this->pSymTable[i].GetSymbol());
+		bitset<8> bSymbol(this->symTable[i].GetSymbol());
 
-
-		fprintf(fp, "\n%s  ::  %s", bSymbol.to_string('0', '1').c_str(), this->pSymTable[i].GetCode().c_str());
+		fprintf(fp, "\n%s  ::  %s", bSymbol.to_string('0', '1').c_str(), this->symTable[i].GetCode().c_str());
 	}
 
 	fclose(fp);
@@ -199,6 +202,8 @@ void HuffmanEnc::PrintSymbolTable()
 
 void HuffmanEnc::WriteToFile()
 {
+	int iTotBitCount = 0;	
+
 	string strFileName(this->pFileStats->szFileName);
 	int iPos = strFileName.find('.');
 	string strOpFileName = strFileName.substr(0, iPos) + "_H_Comp.dat";
@@ -214,19 +219,66 @@ void HuffmanEnc::WriteToFile()
 	{
 		unsigned int cSymbol = (unsigned int)fgetc(fpIn);
 		string szCode = this->GetCodeForSymbol(cSymbol);
+		iTotBitCount += szCode.length();		
+
 		fprintf(fpOut, "%s", szCode.c_str());
 	}
 
 	fclose(fpIn);
 	fclose(fpOut);
+	
+	WritePostStatistics(iTotBitCount);
 }
 
-void HuffmanEnc::WritePostStatistics()
+void HuffmanEnc::WritePostStatistics(int iTotBitCount)
 {
+	float fCompressionRatio;
+	float fRedundancy;
+	float fAvgBits = 0.00f;
 
+	fCompressionRatio = (float)(iTotBitCount) / (float)(this->pFileStats->GetFileSizeInBits());
+
+	for (int i = 0; i < this->iSymCount; i++)
+	{
+		unsigned int cSym = this->pSymTable[i].GetSymbol();
+		string szCode = this->GetCodeForSymbol(cSym);
+
+		fAvgBits += this->pFileStats->GetSymbolProbability(cSym) * szCode.length();		
+	}
+
+	fRedundancy = fAvgBits - this->pFileStats->GetEntropy();
+
+	string strFileName(this->pFileStats->szFileName);
+	int iPos = strFileName.find('.');
+	string strOpFileName = strFileName.substr(0, iPos) + "_H_Comp.dat";
+	string strOpStatsFileName = GenerateOpFileName(strOpFileName, "_Op_Stats.txt");
+	
+	FILE *fp = fopen(strOpStatsFileName.c_str(), "w");
+
+	fprintf(fp, "Output File Statistics for Huffman Coding with Global Statistics\n");
+	fprintf(fp, "\nInput FileName:    %s", strFileName.c_str());
+	fprintf(fp, "\nOutput FileName:   %s", strOpFileName.c_str());
+
+	// Ip File Size
+	fprintf(fp, "\nInput FileSize:    %d bits", this->pFileStats->GetFileSizeInBits());
+	// Op File Size
+	fprintf(fp, "\nOutput FileSize:   %d bits", iTotBitCount);
+	// Compression Ratio
+	fprintf(fp, "\nCompression Ratio: %f", fCompressionRatio);
+	fprintf(fp, "\n  Savings :        %f %%", (1 - fCompressionRatio) * 100);
+	// Average Bits
+	fprintf(fp, "\nAverage Bits:      %f bits", fAvgBits);
+	// Redundancy	
+	fprintf(fp, "\nCoding Redundancy: %f", fRedundancy);
+
+	fclose(fp);
 }
 
 string HuffmanEnc::GetCodeForSymbol(unsigned int cSym)
 {
-	return "";
+	for (int i = 0; i < this->iSymCount; i++)
+	{
+		if (cSym == this->symTable[i].GetSymbol())
+			return this->symTable[i].GetCode();
+	}
 }

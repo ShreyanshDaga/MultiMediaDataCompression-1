@@ -50,11 +50,34 @@ void Problem_2_A()
 void Problem_2_B()
 {
 	// Huffman Coding with Global Stats
-	FileStatistics fText("test_1.txt");
+	FileStatistics fTest("test_2.txt");
+	HuffmanEnc HEnc_Test(&fTest);
+
+	HEnc_Test.Encode_Huffman();
+
+	// Huffman Coding with Global Stats
+	FileStatistics fText("text.dat");
 	HuffmanEnc HEnc_Text(&fText);
 
 	HEnc_Text.Encode_Huffman();
 
+	// Huffman Coding with Global Stats
+	FileStatistics fAudio("audio.dat");
+	HuffmanEnc HEnc_Audio(&fAudio);
+
+	HEnc_Audio.Encode_Huffman();
+
+	// Huffman Coding with Global Stats
+	FileStatistics fImage("image.dat.raw");
+	HuffmanEnc HEnc_Image(&fImage);
+
+	HEnc_Image.Encode_Huffman();
+
+	// Huffman Coding with Global Stats
+	FileStatistics fBin("binary.dat.raw");
+	HuffmanEnc HEnc_Bin(&fBin);
+
+	HEnc_Bin.Encode_Huffman();
 }
 
 void Problem_2_C()

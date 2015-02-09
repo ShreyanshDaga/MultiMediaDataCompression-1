@@ -114,3 +114,18 @@ int FileStatistics::GetTotalSymbolCount()
 {
 	return this->pSymTable->iSymbolCount;
 }
+
+int FileStatistics::GetFileSizeInBits()
+{
+	return (this->iFileSize * 8);
+}
+
+float FileStatistics::GetEntropy()
+{
+	return this->fEntropy;
+}
+
+float FileStatistics::GetSymbolProbability(unsigned int cSym)
+{
+	return this->pfProbability[cSym];
+}

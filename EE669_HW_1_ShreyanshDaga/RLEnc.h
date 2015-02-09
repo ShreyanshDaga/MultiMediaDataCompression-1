@@ -19,6 +19,9 @@ class RLEnc
 		void Encode_RLE_Modified();
 		void Decode_RLE_Modified(string strIpFileName);
 		void Encode_RLE_MTFT();
+		void Decode_RLE_MTFT();
+
+		void PrintPostStatistics();			
 };
 
 #endif

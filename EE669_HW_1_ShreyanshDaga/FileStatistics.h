@@ -24,11 +24,12 @@ class FileStatistics
 		void IncrementSymbolCount(char cSym);
 		int GetSymbolCount(char cSym);
 		int GetTotalSymbolCount();
-		float GetSymbolProbability(char cSym);
+		float GetSymbolProbability(unsigned int cSym);
 		float* GetProbability();
 		float GetEntropy();
 		void PrintSymbolTable(char *pszOPFileName);
 		void PrintStatistics(string szFileName);
+		int GetFileSizeInBits();
 };
 
 #endif

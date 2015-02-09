@@ -26,8 +26,8 @@ class HuffmanEnc
 		void Encode_Huffman();
 		void PrintSymbolTable();
 		void WriteToFile();
-		void WritePostStatistics();
-
+		void WritePostStatistics(int iTotBitCount);
+		void AssignCode(Node *pRoot, string strCode);
 		Node ExtractMin();
 };
 

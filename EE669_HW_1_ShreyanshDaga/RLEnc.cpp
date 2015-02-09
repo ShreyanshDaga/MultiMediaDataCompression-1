@@ -197,6 +197,11 @@ void  RLEnc::Encode_RLE_MTFT()
 	fclose(fpOp);
 }
 
+void RLEnc::Decode_RLE_MTFT()
+{
+
+}
+
 int FindSymbolPosition(Symbol *pSymTable, unsigned int cSym, int iTotSymbols)
 {
 	for (int i = 0; i < iTotSymbols; i++)
