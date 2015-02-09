@@ -20,4 +20,6 @@ void Problem_3_A();
 void Problem_3_B();
 void Problem_3_C();
 
+string GenerateOpFileName(string strIpFileName, string strAppendText);
+
 #endif

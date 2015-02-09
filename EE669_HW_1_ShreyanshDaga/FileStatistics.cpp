@@ -65,7 +65,7 @@ void FileStatistics::GenerateStatistics()
 		fclose(fp);
 		// Statistics have been calculated
 		this->bStats = true;
-		string strFileName(this->szFileName);		
+		string strFileName(this->szFileName);
 		int iPos = strFileName.find('.');
 		string strOpFileName = strFileName.substr(0, iPos) + "_Stats.txt";
 		this->PrintStatistics(strOpFileName);

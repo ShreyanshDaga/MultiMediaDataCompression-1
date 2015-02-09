@@ -4,12 +4,14 @@ using namespace std;
 
 int PrintMenu();
 void Split();
+void TestForfeof();
 
 int main()
 {	
 	int iCh = 0;
 	///
-//	Split();
+	//	Split();
+	//	TestForfeof();
 	///
 	while (1)
 	{
@@ -91,4 +93,37 @@ void Split()
 
 	cout << i<<endl;
 	cout << j<<endl;
+}
+
+string GenerateOpFileName(string strIpFileName, string strAppendText)
+{
+	
+	int iPos = strIpFileName.find('.');
+	string strOpFileName = strIpFileName.substr(0, iPos) + strAppendText;
+
+	return strOpFileName;
+}
+
+void TestForfeof()
+{
+	FILE *fpIn = fopen("test_2.txt", "rb");
+	unsigned int cSym;
+
+	while ((cSym = fgetc(fpIn)) != EOF)
+	{
+		unsigned int cNext;
+		int iCurrCount = 1;
+
+		while (((cNext = fgetc(fpIn)) != EOF) && (cNext == cSym))
+		{
+			if (cNext == EOF)
+				break;
+			iCurrCount++;
+		}
+		
+		cout << "\ncSymbol: " << cSym << " Count: " << iCurrCount;
+		
+		if (cNext != EOF)
+			fseek(fpIn, -1, SEEK_CUR);
+	}
 }

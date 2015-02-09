@@ -10,9 +10,15 @@ class RLEnc
 {
 	public:
 		FileStatistics *pFileStats;
+		Symbol *pSymTable;
 		
 		RLEnc();
-		RLEnc(FileStatistics *pFileStats)
+		RLEnc(FileStatistics *pFileStats);
+
+		void Encode_RLE_Basic();
+		void Encode_RLE_Modified();
+		void Decode_RLE_Modified(string strIpFileName);
+		void Encode_RLE_MTFT();
 };
 
 #endif
