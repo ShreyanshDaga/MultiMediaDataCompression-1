@@ -21,7 +21,7 @@ class RLEnc
 		void Encode_RLE_MTFT();
 		void Decode_RLE_MTFT();
 
-		void PrintPostStatistics();			
+		void WritePostStatistics(int iTotBitCount, string strEncodedFile);
 };
 
 #endif

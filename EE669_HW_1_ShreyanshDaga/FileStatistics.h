@@ -19,6 +19,7 @@ class FileStatistics
 
 		FileStatistics();
 		FileStatistics(char *pszFileName);
+		FileStatistics(string strFileName);
 
 		void GenerateStatistics();
 		void IncrementSymbolCount(char cSym);

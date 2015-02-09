@@ -33,6 +33,12 @@ ShannonFanoEnc::ShannonFanoEnc(FileStatistics *pFileStats)
 void ShannonFanoEnc::Encode_ShannonFano()
 {		
 	this->ShannonRecursive(0, this->iSymCount - 1);
+
+	// Print SymbolTable
+	this->PrintSymbolTable();
+
+	// Write Output File
+	this->WriteToFile();
 }
 
 void ShannonFanoEnc::SortSymbols()
@@ -120,6 +126,8 @@ void ShannonFanoEnc::PrintSymbolTable()
 
 void ShannonFanoEnc::WriteToFile()
 {
+	int iTotBitCount = 0;
+
 	string strFileName(this->pFileStats->szFileName);
 	int iPos = strFileName.find('.');
 	string strOpFileName = strFileName.substr(0, iPos) + "_SF_Comp.dat";
@@ -135,20 +143,59 @@ void ShannonFanoEnc::WriteToFile()
 	{
 		unsigned int cSymbol = (unsigned int)fgetc(fpIn);
 		string szCode = this->GetCodeForSymbol(cSymbol);
+		iTotBitCount += szCode.length();
+
 		fprintf(fpOut, "%s", szCode.c_str());
 	}
 
 	fclose(fpIn);
 	fclose(fpOut);
+
+	WritePostStatistics(iTotBitCount);
 }
 
-void ShannonFanoEnc::WritePostStatistics()
+void ShannonFanoEnc::WritePostStatistics(int iTotBitCount)
 {
-	// Redunduncy
+	float fCompressionRatio;
+	float fRedundancy;
+	float fAvgBits = 0.00f;
 
-	// Avg CodeWord length
+	fCompressionRatio = (float)(iTotBitCount) / (float)(this->pFileStats->GetFileSizeInBits());
 
+	for (int i = 0; i < this->iSymCount; i++)
+	{
+		unsigned int cSym = this->pSymTable[i].GetSymbol();
+		string szCode = this->GetCodeForSymbol(cSym);
+
+		fAvgBits += this->pFileStats->GetSymbolProbability(cSym) * szCode.length();
+	}
+
+	fRedundancy = fAvgBits - this->pFileStats->GetEntropy();
+
+	string strFileName(this->pFileStats->szFileName);
+	int iPos = strFileName.find('.');
+	string strOpFileName = strFileName.substr(0, iPos) + "_SF_Comp.dat";
+	string strOpStatsFileName = GenerateOpFileName(strOpFileName, "_Op_Stats.txt");
+
+	FILE *fp = fopen(strOpStatsFileName.c_str(), "w");
+
+	fprintf(fp, "Output File Statistics for Shannon Fano Coding\n");
+	fprintf(fp, "\nInput FileName:    %s", strFileName.c_str());
+	fprintf(fp, "\nOutput FileName:   %s", strOpFileName.c_str());
+
+	// Ip File Size
+	fprintf(fp, "\nInput FileSize:    %d bits", this->pFileStats->GetFileSizeInBits());
+	// Op File Size
+	fprintf(fp, "\nOutput FileSize:   %d bits", iTotBitCount);
 	// Compression Ratio
+	fprintf(fp, "\nCompression Ratio: %f", fCompressionRatio);
+	fprintf(fp, "\n  Savings :        %f %%", (1 - fCompressionRatio) * 100);
+	// Average Bits
+	fprintf(fp, "\nAverage Bits:      %f bits", fAvgBits);
+	// Redundancy	
+	fprintf(fp, "\nCoding Redundancy: %f", fRedundancy);
+
+	fclose(fp);
 }
 
 string ShannonFanoEnc::GetCodeForSymbol(unsigned int cSym)

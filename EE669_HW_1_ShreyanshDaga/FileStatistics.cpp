@@ -22,6 +22,19 @@ FileStatistics::FileStatistics(char *pszFileName)
 	this->GenerateStatistics();	
 }
 
+FileStatistics::FileStatistics(string strFileName)
+{
+	this->fEntropy = 0.00f;
+	this->bStats = false;
+	this->iFileSize = 0;
+	this->pSymTable = new SymbolTable(256);
+
+	strcpy(this->szFileName, strFileName.c_str());
+
+	// Generate the Statistics here
+	this->GenerateStatistics();
+}
+
 void FileStatistics::GenerateStatistics()
 {
 	if (!this->bStats)

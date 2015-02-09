@@ -21,7 +21,7 @@ class ShannonFanoEnc
 		void Encode_ShannonFano();
 		void PrintSymbolTable();
 		void WriteToFile();
-		void WritePostStatistics();
+		void WritePostStatistics(int iTotBitCount);
 };
 
 #endif
