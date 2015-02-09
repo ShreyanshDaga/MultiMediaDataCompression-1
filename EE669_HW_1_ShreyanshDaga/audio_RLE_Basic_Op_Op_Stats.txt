@@ -1,0 +1,8 @@
+Output File Statistics for RLE Coding
+
+Input FileName:    audio.dat
+Output FileName:   audio_RLE_Basic_Op.dat
+Input FileSize:    524288 bits
+Output FileSize:   868272 bits
+Compression Ratio: 1.656097
+  Savings :        -65.609741 %

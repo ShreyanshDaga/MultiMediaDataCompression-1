@@ -1,0 +1,10 @@
+Output File Statistics for Huffman Coding with Global Statistics
+
+Input FileName:    audio_MTF_Op.dat
+Output FileName:   audio_MTF_Op_H_Comp.dat
+Input FileSize:    524288 bits
+Output FileSize:   403075 bits
+Compression Ratio: 0.768805
+  Savings :        23.119545 %
+Average Bits:      6.150436 bits
+Coding Redundancy: 0.040175

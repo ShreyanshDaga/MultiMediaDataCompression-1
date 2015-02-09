@@ -1,0 +1,8 @@
+Output File Statistics for RLE Coding
+
+Input FileName:    test256.txt
+Output FileName:   test256_RLE_Modified_Op.dat
+Input FileSize:    2080 bits
+Output FileSize:   48 bits
+Compression Ratio: 0.023077
+  Savings :        97.692307 %

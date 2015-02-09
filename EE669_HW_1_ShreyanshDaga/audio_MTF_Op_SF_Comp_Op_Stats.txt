@@ -1,0 +1,10 @@
+Output File Statistics for Shannon Fano Coding
+
+Input FileName:    audio_MTF_Op.dat
+Output FileName:   audio_MTF_Op_SF_Comp.dat
+Input FileSize:    524288 bits
+Output FileSize:   404478 bits
+Compression Ratio: 0.771481
+  Savings :        22.851944 %
+Average Bits:      6.171844 bits
+Coding Redundancy: 0.061583

@@ -1,0 +1,10 @@
+Output File Statistics for Huffman Coding with Global Statistics
+
+Input FileName:    binary.dat.raw
+Output FileName:   binary_H_Comp.dat
+Input FileSize:    2097152 bits
+Output FileSize:   262144 bits
+Compression Ratio: 0.125000
+  Savings :        87.500000 %
+Average Bits:      1.000000 bits
+Coding Redundancy: 0.858964

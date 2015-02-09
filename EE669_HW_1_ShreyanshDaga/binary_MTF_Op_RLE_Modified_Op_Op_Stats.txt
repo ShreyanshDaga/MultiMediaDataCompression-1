@@ -1,0 +1,8 @@
+Output File Statistics for RLE Coding
+
+Input FileName:    binary_MTF_Op.dat
+Output FileName:   binary_MTF_Op_RLE_Modified_Op.dat
+Input FileSize:    2097152 bits
+Output FileSize:   40392 bits
+Compression Ratio: 0.019260
+  Savings :        98.073959 %

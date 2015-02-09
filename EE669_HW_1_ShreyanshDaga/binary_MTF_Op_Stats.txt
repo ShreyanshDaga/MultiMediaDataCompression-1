@@ -1,0 +1,7 @@
+Input File Name: binary_MTF_Op.dat
+Entropy: 0.017152
+Total Symbols: 2
+
+Symbol(Binary) : Relative Frequnecy
+00000000 : 0.998402
+00000001 : 0.001598

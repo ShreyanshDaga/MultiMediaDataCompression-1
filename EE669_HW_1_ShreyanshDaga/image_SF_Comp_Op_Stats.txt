@@ -1,0 +1,10 @@
+Output File Statistics for Shannon Fano Coding
+
+Input FileName:    image.dat.raw
+Output FileName:   image_SF_Comp.dat
+Input FileSize:    2097152 bits
+Output FileSize:   1983905 bits
+Compression Ratio: 0.946000
+  Savings :        5.400038 %
+Average Bits:      7.567997 bits
+Coding Redundancy: 0.049262

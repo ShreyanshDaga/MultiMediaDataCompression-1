@@ -1,0 +1,10 @@
+Output File Statistics for Huffman Coding with Global Statistics
+
+Input FileName:    audio.dat
+Output FileName:   audio_H_Comp.dat
+Input FileSize:    524288 bits
+Output FileSize:   425325 bits
+Compression Ratio: 0.811243
+  Savings :        18.875694 %
+Average Bits:      6.489944 bits
+Coding Redundancy: 0.034002

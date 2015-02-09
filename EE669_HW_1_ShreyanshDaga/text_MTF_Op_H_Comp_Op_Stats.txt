@@ -1,0 +1,10 @@
+Output File Statistics for Huffman Coding with Global Statistics
+
+Input FileName:    text_MTF_Op.dat
+Output FileName:   text_MTF_Op_H_Comp.dat
+Input FileSize:    69640 bits
+Output FileSize:   42560 bits
+Compression Ratio: 0.611143
+  Savings :        38.885700 %
+Average Bits:      4.889143 bits
+Coding Redundancy: 0.030785

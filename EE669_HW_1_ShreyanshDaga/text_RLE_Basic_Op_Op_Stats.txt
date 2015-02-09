@@ -1,0 +1,8 @@
+Output File Statistics for RLE Coding
+
+Input FileName:    text.dat
+Output FileName:   text_RLE_Basic_Op.dat
+Input FileSize:    69640 bits
+Output FileSize:   136128 bits
+Compression Ratio: 1.954739
+  Savings :        -95.473862 %

@@ -1,0 +1,8 @@
+Input File Name: test_2.txt
+Entropy: 1.295462
+Total Symbols: 3
+
+Symbol(Binary) : Relative Frequnecy
+01000001 : 0.600000
+01000010 : 0.300000
+01000011 : 0.100000

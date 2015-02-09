@@ -1,0 +1,10 @@
+Output File Statistics for Huffman Coding with Global Statistics
+
+Input FileName:    text.dat
+Output FileName:   text_H_Comp.dat
+Input FileSize:    69640 bits
+Output FileSize:   38967 bits
+Compression Ratio: 0.559549
+  Savings :        44.045090 %
+Average Bits:      4.476393 bits
+Coding Redundancy: 0.036982

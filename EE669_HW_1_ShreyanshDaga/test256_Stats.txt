@@ -1,0 +1,6 @@
+Input File Name: test256.txt
+Entropy: 0.000000
+Total Symbols: 1
+
+Symbol(Binary) : Relative Frequnecy
+01000001 : 1.000000

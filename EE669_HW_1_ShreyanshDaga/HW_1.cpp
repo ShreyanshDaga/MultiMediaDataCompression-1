@@ -21,27 +21,27 @@ int main()
 		{
 			case 1:
 				Problem_2_A();
-			break;
+			//break;
 
 			case 2:
 				Problem_2_B();
-			break;
+			//break;
 
 			case 3:
 				Problem_2_C();
-			break;
+			//break;
 
 			case 4:
 				Problem_3_A();
-			break;
+			//break;
 
 			case 5:
 				Problem_3_B();
-			break;
+			//break;
 
 			case 6:
 				Problem_3_C();
-			break;
+			//break;
 
 			case 0:
 				exit(0);

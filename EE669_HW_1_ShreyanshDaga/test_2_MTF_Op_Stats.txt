@@ -1,0 +1,8 @@
+Input File Name: test_2_MTF_Op.dat
+Entropy: 0.921928
+Total Symbols: 3
+
+Symbol(Binary) : Relative Frequnecy
+00000000 : 0.800000
+00000001 : 0.100000
+00000010 : 0.100000
